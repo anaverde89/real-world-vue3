@@ -1,7 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EventList from '../views/EventList.vue'
+import EventDetails from '../views/EventDetails.vue'
 import About from '../views/About.vue'
-
+import NotFound from '../views/NotFound.vue'
+/*
+History mode:
+/*: source
+/index.html: destination
+rewrite: action
+*/
 const routes = [
   {
     path: '/',
@@ -9,10 +16,17 @@ const routes = [
     component: EventList,
   },
   {
+    path: '/event/:id',
+    name: 'EventDetails',
+    props: true,
+    component: EventDetails,
+  },
+  {
     path: '/about',
     name: 'About',
     component: About,
   },
+  { path: '/:catchAll(.*)', component: NotFound, name: 'NotFound' },
 ]
 
 const router = createRouter({
